@@ -38,3 +38,7 @@ nav {
   display: flex;
   justify-content: space-between;
 }
+
+.pagination {
+  text-align: center;
+}
