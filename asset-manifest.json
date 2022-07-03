@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/react-simple-movie-search/static/css/main.4ff72adf.css",
-    "main.js": "/react-simple-movie-search/static/js/main.df10d96e.js",
-    "index.html": "/react-simple-movie-search/index.html",
-    "main.4ff72adf.css.map": "/react-simple-movie-search/static/css/main.4ff72adf.css.map",
-    "main.df10d96e.js.map": "/react-simple-movie-search/static/js/main.df10d96e.js.map"
+    "main.css": "/react-omdb-search/static/css/main.4ff72adf.css",
+    "main.js": "/react-omdb-search/static/js/main.df10d96e.js",
+    "index.html": "/react-omdb-search/index.html",
+    "main.4ff72adf.css.map": "/react-omdb-search/static/css/main.4ff72adf.css.map",
+    "main.df10d96e.js.map": "/react-omdb-search/static/js/main.df10d96e.js.map"
   },
   "entrypoints": [
     "static/css/main.4ff72adf.css",
