@@ -9,7 +9,7 @@ const Header = () => {
         </a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li>
-            <a href="sass.html">Sass</a>
+            <a href="https://github.com/AzarakD/react-omdb-search">Pero</a>
           </li>
         </ul>
       </div>
