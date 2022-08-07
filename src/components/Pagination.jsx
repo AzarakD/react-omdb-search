@@ -1,21 +1,25 @@
 import React from "react";
+import { useStore } from "effector-react";
+
+import { $currentPage, $total, setCurrentPage } from "../model/model";
 
 const PER_PAGE = 10;
 
-const Pagination = (props) => {
-  const { total, currentPage } = props;
+const Pagination = () => {
+  const total = useStore($total);
+  const currentPage = useStore($currentPage);
   const pagesCount = Math.ceil(total / PER_PAGE);
 
   const handleChangePage = (evt) => {
-    props.handleChangePage(evt.target.text);
+    setCurrentPage(evt.target.text);
   };
 
   const handlePageBack = () => {
-    currentPage > 1 && props.handleChangePage(currentPage - 1);
+    currentPage > 1 && setCurrentPage(currentPage - 1);
   };
 
   const handlePageNext = () => {
-    currentPage < pagesCount && props.handleChangePage(currentPage + 1);
+    currentPage < pagesCount && setCurrentPage(currentPage + 1);
   };
 
   return (
