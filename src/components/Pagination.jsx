@@ -1,17 +1,17 @@
 import React from "react";
-import { useStore } from "effector-react";
+import { useEvent, useStore } from "effector-react";
 
-import { $currentPage, $total, setCurrentPage } from "../model/model";
-
-const PER_PAGE = 10;
+import { $currentPage, $pagesCount, currentPageSet } from "../model";
 
 const Pagination = () => {
-  const total = useStore($total);
   const currentPage = useStore($currentPage);
-  const pagesCount = Math.ceil(total / PER_PAGE);
+  const pagesCount = useStore($pagesCount);
+
+  const setCurrentPage = useEvent(currentPageSet);
 
   const handleChangePage = (evt) => {
-    setCurrentPage(evt.target.text);
+    const page = +evt.target.text;
+    page !== currentPage && setCurrentPage(page);
   };
 
   const handlePageBack = () => {
@@ -25,7 +25,7 @@ const Pagination = () => {
   return (
     <ul className="pagination">
       <li
-        className={+currentPage === 1 ? "disabled" : "waves-effect"}
+        className={currentPage === 1 ? "disabled" : "waves-effect"}
         onClick={handlePageBack}
       >
         <a href="#!">
@@ -36,7 +36,7 @@ const Pagination = () => {
         .fill(null)
         .map((_, index) => (
           <li
-            className={+currentPage === index + 1 ? "active" : "waves-effect"}
+            className={currentPage === index + 1 ? "active" : "waves-effect"}
             key={index}
             onClick={handleChangePage}
           >
@@ -44,7 +44,7 @@ const Pagination = () => {
           </li>
         ))}
       <li
-        className={+currentPage === pagesCount ? "disabled" : "waves-effect"}
+        className={currentPage === pagesCount ? "disabled" : "waves-effect"}
         onClick={handlePageNext}
       >
         <a href="#!">

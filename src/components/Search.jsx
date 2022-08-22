@@ -1,22 +1,19 @@
-import { useStore } from "effector-react";
+import { useStore, useEvent } from "effector-react";
 
-import { $search, $type, getData, setSearch, setType } from "../model/model";
+import { $userInput, $type, userInputSet, typeSet } from "../model";
 
 const TYPES = ["all", "movie", "series"];
 
 const Search = () => {
-  const search = useStore($search);
+  const userInput = useStore($userInput);
   const searchType = useStore($type);
+
+  const setUserInput = useEvent(userInputSet);
+  const setType = useEvent(typeSet);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    setType(TYPES[0]);
-    getData({ search });
-  };
-
-  const handleChangeType = (type) => {
-    setType(type);
-    getData({ search, type });
+    userInput && setType(searchType);
   };
 
   return (
@@ -27,8 +24,8 @@ const Search = () => {
             className="validate"
             placeholder="Search"
             type="search"
-            value={search}
-            onChange={(evt) => setSearch(evt.target.value)}
+            value={userInput}
+            onChange={(evt) => setUserInput(evt.target.value)}
           />
           <div className="radio-buttons">
             {TYPES.map((type) => (
@@ -39,7 +36,7 @@ const Search = () => {
                   type="radio"
                   data-type={type}
                   checked={searchType === type}
-                  onChange={() => handleChangeType(type)}
+                  onChange={() => setType(type)}
                 />
                 <span>{type}</span>
               </label>
