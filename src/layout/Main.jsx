@@ -5,11 +5,11 @@ import Search from "../components/Search";
 import Preloader from "../components/Preloader";
 import Pagination from "../components/Pagination";
 
-import { $isLoading, $movies, InitGate } from "../model";
+import { getDataFx, $movies, InitGate } from "../model";
 
 const Main = () => {
   const movies = useStore($movies);
-  const isLoading = useStore($isLoading);
+  const isLoading = useStore(getDataFx.pending);
 
   useGate(InitGate);
 

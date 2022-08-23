@@ -14,7 +14,7 @@ export const InitGate = createGate();
 
 // ===== Event =====
 
-const getDataFx = createEffect(async (params) => {
+export const getDataFx = createEffect(async (params) => {
   const { search = $userInput.getState(), type, page } = params;
 
   let url = `${API_HOST}&s=${search}`;
@@ -45,10 +45,6 @@ export const $userInput = createStore("Matrix")
   });
 
 export const $type = createStore("all").on(typeSet, (_, payload) => payload);
-
-export const $isLoading = createStore(false)
-  .on(getDataFx, () => true)
-  .on(getDataFx.done, () => false);
 
 export const $movies = createStore([]).on(
   getDataFx.doneData,
